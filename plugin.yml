@@ -1,0 +1,10 @@
+name: ActionScoreboardAPI
+main: VaxPex\Scoreboard
+version: 1.0.0
+api: [3.0.0]
+author: VaxPex
+description: Add Scoreboard with no scores in 1.18!
+
+commands:
+  test:
+    description: testing
