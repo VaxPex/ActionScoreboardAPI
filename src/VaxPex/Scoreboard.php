@@ -37,7 +37,7 @@ class Scoreboard extends PluginBase implements Listener{
 			$player->removeTitles();
 		}
 		$this->scoreboards[$player->getName()] = $objectiveName;
-		$player->sendTitle(str_repeat(" ", str_word_count($lines) * 3) . $name . "\n§r§f " . $lines);
+		$player->sendTitle(" ". $name . "\n§r§f " . $lines);
 	}
 
 	public function remove(Player $player){
