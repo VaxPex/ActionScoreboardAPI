@@ -65,17 +65,7 @@ class Scoreboard extends PluginBase implements Listener{
 		}
 	}
 
-	//don't touch that event
 	public function omQuit(PlayerQuitEvent $event){
 		$this->remove($event->getPlayer());
-	}
-
-	public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
-		if($command->getName() === "test"){
-			if($sender instanceof Player){
-				$this->create("Example", "Example", $sender, "Hello {$sender->getName()}");
-			}
-		}
-		return true;
 	}
 }
