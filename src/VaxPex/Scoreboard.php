@@ -9,6 +9,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\Player;
+use pocketmine\resourcepacks\ZippedResourcePack;
 use pocketmine\plugin\PluginBase;
 
 class Scoreboard extends PluginBase implements Listener{
@@ -19,7 +20,24 @@ class Scoreboard extends PluginBase implements Listener{
 
 	public function onEnable(){
 		self::$instance = $this;
+		$this->saveResource("action_scoreboard.mcpack");
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
+		$manager = $this->getServer()->getResourcePackManager();
+		$pack = new ZippedResourcePack($this->getDataFolder() . "action_scoreboard.mcpack");
+		$reflection = new \ReflectionClass($manager);
+		$property = $reflection->getProperty("resourcePacks");
+		$property->setAccessible(true);
+		$currentResourcePacks = $property->getValue($manager);
+		$currentResourcePacks[] = $pack;
+		$property->setValue($manager, $currentResourcePacks);
+		$property = $reflection->getProperty("uuidList");
+		$property->setAccessible(true);
+		$currentUUIDPacks = $property->getValue($manager);
+		$currentUUIDPacks[strtolower($pack->getPackId())] = $pack;
+		$property->setValue($manager, $currentUUIDPacks);
+		$property = $reflection->getProperty("serverForceResources");
+		$property->setAccessible(true);
+		$property->setValue($manager, false);
 	}
 
 	public function onDisable(){
