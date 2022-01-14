@@ -8,7 +8,6 @@ use VaxPex\Scoreboard; // import
 // to create scoreboard
 Scoreboard::getInstance()->create("lobby", "thing", $player, "The first Line\nThe second Line"){ 
 
-if(isset(Scoreboard::getInstance()->scoreboard[$player->getName()])){
-  Scoreboard::getInstance()->remove($player);
-} // to remove
+// to remove
+Scoreboard::getInstance()->remove($player);
 ```
