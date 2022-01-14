@@ -5,8 +5,8 @@ Api for action scoreboard for HixXBase can be used in pmmp 3 or eskobe
 ```php
 use VaxPex\Scoreboard; // import
 
-Scoreboard::getInstance()->create($player, "thing"); // to create scoreboard
-
+// to create scoreboard
+Scoreboard::getInstance()->create($player, "thing"); 
 
 if(isset(Scoreboard::getInstance()->scoreboard[$player->getName()])){
   Scoreboard::getInstance()->remove($player);
